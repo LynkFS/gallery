@@ -1,2 +1,2 @@
-# gallery2
-yvonna's gallery2
+# gallery
+yvonna's gallery
