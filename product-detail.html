@@ -1,0 +1,2435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artwork Details | Yvonne Druppers Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #242639;
+      --primary-light: #393c56;
+      --secondary: #f8f5f0;
+      --accent: #b57d56;
+      --accent-light: #d8b297;
+      --text: #333;
+      --text-light: #777;
+      --white: #fff;
+      --spacing: 20px;
+      --border-radius: 4px;
+      --transition: all 0.3s ease;
+      --shadow: 0 5px 20px rgba(0,0,0,0.1);
+      --container-max: 1600px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background-color: var(--secondary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+    
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--spacing);
+    }
+    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    
+    /* Header & Navigation */
+    .header {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .announcement-bar {
+      background-color: var(--primary);
+      color: var(--white);
+      text-align: center;
+      padding: 8px 0;
+      font-size: 0.85rem;
+    }
+    
+    .main-nav {
+      background-color: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+    
+    .logo-primary {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+    
+    .logo-secondary {
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-item {
+      margin-left: 40px;
+      position: relative;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      padding-bottom: 4px;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent);
+    }
+    
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .nav-icons {
+      display: flex;
+      align-items: center;
+    }
+    
+    .nav-icon {
+      margin-left: 20px;
+      color: var(--primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-icon:hover {
+      color: var(--accent);
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: var(--accent);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      background-color: var(--white);
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .breadcrumbs-list {
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+
+    .breadcrumb-item {
+      display: flex;
+      align-items: center;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .breadcrumb-item a {
+      color: var(--text-light);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .breadcrumb-item a:hover {
+      color: var(--accent);
+    }
+
+    .breadcrumb-divider {
+      margin: 0 10px;
+      color: var(--text-light);
+    }
+
+    .breadcrumb-item.active {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Product Detail Section */
+    .product-section {
+      padding: 60px 0;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+
+    /* Product Gallery */
+    .product-gallery {
+      position: relative;
+    }
+
+    .main-image-container {
+      position: relative;
+      margin-bottom: 20px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .main-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      cursor: zoom-in;
+      transition: transform 0.3s ease;
+    }
+
+    .main-image:hover {
+      transform: scale(1.02);
+    }
+
+    .gallery-expand {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      background-color: var(--white);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transition: var(--transition);
+      z-index: 2;
+    }
+
+    .gallery-expand:hover {
+      background-color: var(--accent);
+      color: var(--white);
+    }
+
+    .thumbnail-container {
+      display: flex;
+      gap: 10px;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumbnail.active {
+      border-color: var(--accent);
+    }
+
+    /* Product Info */
+    .product-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-category {
+      color: var(--accent);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .product-title {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .product-price {
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    .product-meta {
+      margin-bottom: 25px;
+    }
+
+    .meta-item {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .meta-label {
+      width: 120px;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .meta-value {
+      color: var(--text);
+    }
+
+    .availability {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #e6f7e9;
+      color: #2e7d32;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 25px;
+    }
+
+    .availability.low {
+      background-color: #fff8e6;
+      color: #ff8f00;
+    }
+
+    .availability.sold {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+
+    .product-description {
+      color: var(--text);
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+
+    /* Add to Cart */
+    .add-to-cart-container {
+      display: flex;
+      margin-bottom: 30px;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-right: 15px;
+    }
+
+    .quantity-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+
+    .quantity-btn:hover {
+      background-color: rgba(0,0,0,0.05);
+    }
+
+    .quantity-input {
+      width: 50px;
+      text-align: center;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      -moz-appearance: textfield;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    .quantity-input::-webkit-outer-spin-button,
+    .quantity-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .add-to-cart-btn {
+      flex-grow: 1;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 0 30px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #a36d4a;
+    }
+
+    .wishlist-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: var(--border-radius);
+      background: none;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--text-light);
+    }
+
+    .wishlist-btn:hover {
+      color: #e53935;
+      border-color: #e53935;
+    }
+
+    .social-share {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .share-label {
+      margin-right: 15px;
+      color: var(--text-light);
+    }
+
+    .share-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .share-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: #f5f5f5;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .share-link:hover {
+      background-color: var(--accent);
+      color: var(--white);
+    }
+
+    /* Product Tabs */
+    .product-tabs {
+      margin-top: 20px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .tab-btn {
+      padding: 15px 20px;
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-light);
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+
+    .tab-btn:hover {
+      color: var(--accent);
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+    }
+
+    .tab-btn.active::after {
+      width: 100%;
+    }
+
+    .tab-content {
+      padding: 30px 0;
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .tab-panel p {
+      margin-bottom: 15px;
+      line-height: 1.8;
+    }
+
+    .tab-panel ul {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    .tab-panel li {
+      margin-bottom: 8px;
+    }
+
+    /* Artist Section */
+    .artist-section {
+      padding: 60px 0;
+      background-color: var(--white);
+    }
+
+    .artist-container {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .artist-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .artist-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .artist-info {
+      flex: 1;
+    }
+
+    .artist-name {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .artist-bio {
+      color: var(--text);
+      margin-bottom: 15px;
+      line-height: 1.8;
+    }
+
+    .artist-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .artist-link i {
+      margin-left: 5px;
+      transition: var(--transition);
+    }
+
+    .artist-link:hover {
+      color: #a36d4a;
+    }
+
+    .artist-link:hover i {
+      transform: translateX(3px);
+    }
+
+    /* Related Products */
+    .related-section {
+      padding: 60px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-subtitle {
+      color: var(--accent);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 5px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .related-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .related-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .related-img-container {
+      position: relative;
+      height: 0;
+      padding-bottom: 100%;
+      overflow: hidden;
+    }
+
+    .related-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .related-card:hover .related-img {
+      transform: scale(1.1);
+    }
+
+    .related-content {
+      padding: 20px;
+    }
+
+    .related-category {
+      color: var(--accent);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .related-title {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .related-price {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      border: 5px solid white;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: var(--white);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .lightbox-close:hover {
+      background-color: var(--accent);
+      color: var(--white);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: var(--white);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    .lightbox-nav:hover {
+      background-color: var(--accent);
+      color: var(--white);
+    }
+
+    /* Shopping Cart Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: flex-end;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+    
+    .modal-content {
+      width: 100%;
+      max-width: 500px;
+      background-color: var(--white);
+      height: 100%;
+      overflow-y: auto;
+      box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .modal.show .modal-content {
+      transform: translateX(0);
+    }
+    
+    .modal-header {
+      padding: 25px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-title {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .close-modal:hover {
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+    
+    .modal-body {
+      padding: 25px;
+      flex-grow: 1;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--text-light);
+    }
+    
+    .empty-cart-icon {
+      font-size: 3rem;
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+    
+    .cart-items {
+      margin-bottom: 30px;
+    }
+    
+    .cart-item {
+      display: flex;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius);
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    
+    .cart-item-details {
+      flex-grow: 1;
+    }
+    
+    .cart-item-title {
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    
+    .cart-item-variant {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    
+    .cart-item-price {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    
+    .cart-quantity-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .cart-quantity-btn {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .cart-quantity-btn:hover {
+      background-color: rgba(0,0,0,0.05);
+    }
+    
+    .cart-quantity-input {
+      width: 40px;
+      text-align: center;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      -moz-appearance: textfield;
+    }
+    
+    .cart-quantity-input::-webkit-outer-spin-button,
+    .cart-quantity-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    .remove-item {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .remove-item:hover {
+      color: var(--accent);
+    }
+    
+    .modal-footer {
+      margin-top: auto;
+      padding: 25px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+    
+    .checkout-btn {
+      width: 100%;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 15px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .checkout-btn:hover {
+      background-color: #a36d4a;
+    }
+    
+    .continue-shopping {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    
+    .continue-shopping:hover {
+      color: var(--accent);
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: var(--primary-light);
+      color: rgba(255,255,255,0.8);
+      padding: 80px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-logo {
+      color: var(--white);
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .footer-about {
+      margin-bottom: 25px;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.1);
+      color: var(--white);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    
+    .footer-title {
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 30px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-link {
+      margin-bottom: 12px;
+    }
+    
+    .footer-link a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+      position: relative;
+      padding-left: 15px;
+    }
+    
+    .footer-link a::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+    
+    .footer-link a:hover {
+      color: var(--white);
+      padding-left: 20px;
+    }
+    
+    .footer-link a:hover::before {
+      left: 5px;
+    }
+    
+    .contact-info {
+      font-size: 0.95rem;
+    }
+    
+    .contact-item {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .contact-icon {
+      color: var(--accent);
+      margin-right: 15px;
+      font-size: 1.2rem;
+      margin-top: 3px;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1280px) {
+      .related-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .product-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-wrapper {
+        position: relative;
+      }
+      
+      .mobile-toggle {
+        display: block;
+      }
+      
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-top: 1px solid rgba(0,0,0,0.1);
+        display: none;
+      }
+      
+      .nav-menu.show {
+        display: block;
+      }
+      
+      .nav-links {
+        flex-direction: column;
+      }
+      
+      .nav-item {
+        margin: 10px 0;
+      }
+      
+      .artist-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .tab-buttons {
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+
+      .modal-content {
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .product-title {
+        font-size: 2rem;
+      }
+      
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .add-to-cart-container {
+        flex-direction: column;
+      }
+
+      .quantity-control {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      .quantity-btn {
+        flex: 1;
+      }
+
+      .add-to-cart-btn {
+        width: 100%;
+        padding: 12px;
+      }
+
+      .wishlist-btn {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="announcement-bar">
+      <div class="container">
+        <p>Current Snapshot: Dreamscapes | April 15 - June 30, 2025</p>
+      </div>
+    </div>
+    
+    <nav class="main-nav">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo">
+            <span class="logo-primary">Yvonne Druppers</span>
+            <span class="logo-secondary">Gallery</span>
+          </a>
+          
+          <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <div class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html#featured-exhibition" class="nav-link">Snapshot</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html#gallery" class="nav-link active">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a href="about.html" class="nav-link">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html#footer" class="nav-link">Contact</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="nav-icons">
+            <div class="nav-icon" id="search-toggle" aria-label="Search">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-icon" id="cart-toggle" aria-label="Cart">
+              <i class="fas fa-shopping-bag"></i>
+              <span class="cart-count" id="cart-count">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="breadcrumbs">
+    <div class="container">
+      <ul class="breadcrumbs-list">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-divider"><i class="fas fa-chevron-right"></i></li>
+        <li class="breadcrumb-item"><a href="index.html#gallery">Gallery</a></li>
+        <li class="breadcrumb-divider"><i class="fas fa-chevron-right"></i></li>
+        <li class="breadcrumb-item" id="product-category"><a href="#" id="category-link">Category</a></li>
+        <li class="breadcrumb-divider"><i class="fas fa-chevron-right"></i></li>
+        <li class="breadcrumb-item active" id="product-breadcrumb-title">Product Title</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="product-section">
+    <div class="container">
+      <div class="product-container">
+        <div class="product-gallery">
+          <div class="main-image-container">
+            <img src="" alt="" class="main-image" id="main-image">
+            <div class="gallery-expand" id="gallery-expand">
+              <i class="fas fa-expand"></i>
+            </div>
+          </div>
+          <div class="thumbnail-container" id="thumbnail-container">
+            <!-- Thumbnails will be dynamically generated -->
+          </div>
+        </div>
+
+        <div class="product-info">
+          <div class="product-category" id="product-category-display">Category</div>
+          <h1 class="product-title" id="product-title">Product Title</h1>
+          <div class="product-price" id="product-price">$0.00</div>
+          
+          <div class="availability" id="product-availability">
+            In Stock
+          </div>
+
+          <div class="product-meta">
+            <div class="meta-item">
+              <div class="meta-label">Medium:</div>
+              <div class="meta-value" id="product-medium">Oil on canvas</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Dimensions:</div>
+              <div class="meta-value" id="product-dimensions">100 x 80 cm</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Year:</div>
+              <div class="meta-value" id="product-year">2024</div>
+            </div>
+          </div>
+
+          <p class="product-description" id="product-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus efficitur, dui vel hendrerit laoreet, massa urna bibendum ex, at commodo nisi sapien vel orci.
+          </p>
+
+          <div class="add-to-cart-container">
+            <div class="quantity-control">
+              <button class="quantity-btn" id="decrement-btn">-</button>
+              <input type="number" class="quantity-input" id="quantity-input" value="1" min="1" max="10">
+              <button class="quantity-btn" id="increment-btn">+</button>
+            </div>
+            
+            <button class="add-to-cart-btn" id="add-to-cart-btn">
+              <i class="fas fa-shopping-bag"></i> Add to Cart
+            </button>
+            
+            <button class="wishlist-btn" id="wishlist-btn">
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="social-share">
+            <div class="share-label">Share:</div>
+            <div class="share-links">
+              <a href="#" class="share-link"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="share-link"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="share-link"><i class="fab fa-pinterest-p"></i></a>
+              <a href="#" class="share-link"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+
+          <div class="product-tabs">
+            <div class="tab-buttons">
+              <button class="tab-btn active" data-tab="details">Details</button>
+              <button class="tab-btn" data-tab="shipping">Shipping & Returns</button>
+              <button class="tab-btn" data-tab="care">Care Instructions</button>
+            </div>
+            
+            <div class="tab-content">
+              <div class="tab-panel active" id="details-tab">
+                <p>Each artwork by Yvonne Druppers comes with a certificate of authenticity signed by the artist. The piece is carefully wrapped and prepared for shipping to ensure it arrives in perfect condition.</p>
+                <p>This painting is part of the Dreamscape selection, where the artist explores the boundary between reality and dreams through visual metaphors and ethereal color palettes.</p>
+                <ul>
+                  <li>Stretched on a wooden frame, ready to hang</li>
+                  <li>Signed on the front and back by the artist</li>
+                  <li>Includes certificate of authenticity</li>
+                  <li>Professionally packed for safe shipping</li>
+                </ul>
+              </div>
+              
+              <div class="tab-panel" id="shipping-tab">
+                <p>We ship worldwide using professional art shipping services. Each artwork is carefully packaged to ensure safe delivery.</p>
+                <p><strong>Shipping Time:</strong> 7-10 business days for domestic orders, 14-21 business days for international orders.</p>
+                <p><strong>Returns:</strong> We accept returns within 14 days of delivery if the artwork is in its original condition. Please note that shipping costs for returns are the responsibility of the buyer unless the return is due to damage during shipping or an error on our part.</p>
+              </div>
+              
+              <div class="tab-panel" id="care-tab">
+                <p>To maintain the beauty and longevity of your artwork:</p>
+                <ul>
+                  <li>Hang away from direct sunlight to prevent fading</li>
+                  <li>Avoid hanging in areas with high humidity</li>
+                  <li>Dust gently with a soft, dry cloth when needed</li>
+                  <li>For professional cleaning or restoration, consult a fine art conservator</li>
+                  <li>If you need to store the artwork, keep it in a climate-controlled environment wrapped in acid-free materials</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="artist-section">
+    <div class="container">
+      <div class="artist-container">
+        <div class="artist-image">
+          <img src="images/artist-01-b.jpg" alt="Yvonne Druppers">
+        </div>
+        <div class="artist-info">
+          <h2 class="artist-name">Yvonne Druppers</h2>
+          <p class="artist-bio">Born in Utrecht, Netherlands, and longtime resident of Far North Queensland, Australia, Yvonne creates evocative paintings that bridge the gap between perception and reality. Her work invites viewers to explore emotional landscapes as visual poetry.</p>
+          <p class="artist-bio">Working primarily with oil on canvas, Yvonne creates layers of translucent color that seem to capture light from within. Her technique combines traditional methods with contemporary sensibilities, resulting in works that feel both timeless and thoroughly modern.</p>
+          <a href="about.html" class="artist-link">Learn more about the artist <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="related-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">You Might Also Like</div>
+        <h2 class="section-title">Related Artworks</h2>
+      </div>
+      
+      <div class="related-grid" id="related-grid">
+        <!-- Related products will be dynamically generated -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <a href="index.html" class="footer-logo">
+            <div class="logo-primary">Yvonne Druppers</div>
+            <div class="logo-secondary">Gallery</div>
+          </a>
+          <p class="footer-about">The Yvonne Druppers Gallery features evocative paintings that bridge the gap between dreams and reality, inviting viewers to explore emotional landscapes translated through visual poetry.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Pinterest">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-nav">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="index.html">Home</a></li>
+            <li class="footer-link"><a href="index.html#featured-exhibition">Snapshots</a></li>
+            <li class="footer-link"><a href="index.html#gallery">Collections</a></li>
+            <li class="footer-link"><a href="about.html">About</a></li>
+            <li class="footer-link"><a href="index.html#footer">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-explore">
+          <h3 class="footer-title">Explore</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="index.html#gallery">Xian Warriors</a></li>
+            <li class="footer-link"><a href="index.html#gallery">Floral Series</a></li>
+            <li class="footer-link"><a href="index.html#gallery">Animal Studies</a></li>
+            <li class="footer-link"><a href="index.html#gallery">Landscape Works</a></li>
+            <li class="footer-link"><a href="index.html#gallery">Portrait Collection</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h3 class="footer-title">Contact</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt contact-icon"></i>
+              <div>Amstel 123, 1011 PW<br>Amsterdam, Netherlands</div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone-alt contact-icon"></i>
+              <div>+31 20 123 4567</div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope contact-icon"></i>
+              <div>contact@yvonnedruppers.com</div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock contact-icon"></i>
+              <div>By appointment only<br>Monday-Friday, 10:00-17:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Yvonne Druppers Gallery. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightbox-img">
+      <div class="lightbox-close" id="lightbox-close">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="lightbox-nav lightbox-prev" id="lightbox-prev">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="lightbox-nav lightbox-next" id="lightbox-next">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="cart-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Your Cart</h2>
+        <button class="close-modal" id="close-modal" aria-label="Close cart">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="cart-items" class="cart-items">
+          <!-- Cart items will be populated by JavaScript -->
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cart-total-amount">$0.00</span>
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+        <a href="#" class="continue-shopping" id="continue-shopping">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Paintings data with dreamy descriptions
+    const paintings = [
+{
+ "id": 1,
+ "title": "The Commander", 
+ "category": "xian-warriors", 
+ "price": 1200,
+ "description": "A masterful portrayal of an ancient Chinese terracotta warrior with distinctive headdress and beard. This officer figure emerges from darkness, his weathered clay surface capturing the passage of millennia while his stoic expression conveys eternal vigilance.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/soldier-01-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=1"},
+
+{
+ "id": 2,
+ "title": "Silent Sentinel", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "This contemplative portrait reveals the subtle emotional depth behind the warrior's seemingly stoic facade. The artist's careful handling of light creates an ethereal quality, suggesting this figure exists between the physical and spiritual realms.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock", 
+ "image": "images/soldier-02-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=2"},
+
+{
+ "id": 3,
+ "title": "Warrior of the Middle Kingdom", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "With his distinctive cap and armor detailing, this terracotta soldier embodies the strength and discipline of Emperor Qin's legendary army. The textured surface treatment highlights the ancient craftsmanship while bringing a contemporary sensibility to this historical subject.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock", 
+ "image": "images/soldier-03-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=3"},
+
+{
+ "id": 4,
+ "title": "Dynasty Guardian", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "Captured in three-quarter profile, this warrior's serene expression belies his readiness for battle. The delicate rendering of facial features contrasts with the rigid military posture, creating a compelling tension between humanity and duty.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock", 
+ "image": "images/soldier-04-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=4"},
+
+{
+ "id": 5,
+ "title": "The Captain's Gaze", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "This high-ranking officer's stern countenance reflects his authority and strategic mind. The dramatic chiaroscuro technique emphasizes the sculptural quality of his features while the minimal background creates a timeless, meditative atmosphere.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/soldier-05-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=5"},
+
+{
+ "id": 6,
+ "title": "Eternal Protector", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "Distinguished by his elaborate headdress and meticulously rendered facial hair, this warrior exemplifies the artistic sophistication of ancient Chinese military sculpture. The painting's monochromatic palette enhances the subject's powerful presence and immortal essence.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/soldier-06-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=6"},
+
+{
+ "id": 7,
+ "title": "Whispers Across Time", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "This side profile captures the dignity and resolve of an ancient warrior frozen in time. The interplay of light across the sculptural planes of his face creates a dramatic atmosphere, inviting viewers to contemplate the individual behind the uniform.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock", 
+ "image": "images/soldier-07-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=7"},
+
+{
+ "id": 8,
+ "title": "Immortal Army", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "With a countenance suggesting quiet confidence, this terracotta soldier represents the countless warriors who stand eternal guard over their emperor. The subtle texturing of the clay surface and the atmospheric rendering transform this historical figure into a poetic meditation on memory and permanence.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/soldier-08-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=8"},
+
+{
+ "id": 101,
+ "title": "Crimson Canopy", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "A striking composition featuring vibrant red leaves against an azure sky. The artist's bold use of complementary colors creates visual drama while the upward perspective invites viewers to experience the exhilaration of gazing skyward through a tropical canopy.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-01-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=101"},
+
+{
+ "id": 102,
+ "title": "Tulip Symphony", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "These luminous coral tulips reach toward the cerulean sky in a harmonious arrangement of form and color. The artist's meticulous attention to the subtle variations in petal translucency creates a sense of movement, as though the flowers are gently swaying in a spring breeze.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-02-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=102"},
+
+{
+ "id": 103,
+ "title": "Blossom Cascade", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "Delicate coral and saffron blossoms tumble across the canvas, their vibrant hues intensified by the serene blue background. The painting captures that perfect moment when flowering trees reach peak bloom, creating a dreamlike atmosphere that balances botanical precision with emotional resonance.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-03-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=103"},
+
+{
+ "id": 104,
+ "title": "Eucalyptus Whispers", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "An intimate portrait of eucalyptus leaves and seed pods rendered in cool greens and silvery blues. The artist's masterful handling of light reveals the subtle architectural quality of these botanical elements, transforming an ordinary plant into a mesmerizing study of nature's intricate patterns.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-04-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=104"},
+
+{
+ "id": 105,
+ "title": "Water Lilies at Dawn", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "Ethereal lavender-white water lilies emerge from the mysterious depths of a pond. The artist captures both the flowers' delicate beauty and their spiritual symbolism, creating a contemplative scene that evokes the transition from darkness to light, much like the lotus rising from muddy waters toward enlightenment.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-05-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=105"},
+
+{
+ "id": 106,
+ "title": "Tropical Constellation", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "Vibrant scarlet bromeliads punctuate a sea of glossy green foliage in this lush composition. The artist's precise rendering of light on the leaves creates a sense of depth and dimension, while the rhythm of the red flowers scattered throughout suggests a celestial pattern against the verdant cosmos.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-06-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=106"},
+
+{
+ "id": 107,
+ "title": "Morning Dew", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "These tropical leaves, adorned with crystalline dewdrops, showcase the artist's extraordinary attention to detail. The interplay of pink stems against green foliage creates visual tension, while the water droplets capture ephemeral moments of morning light, transforming the ordinary into the magical.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-07-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=107"},
+
+{
+ "id": 108,
+ "title": "Aquamarine Embrace", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "Cool turquoise and deep purple foliage intertwine in this meditative composition. The artist's contemporary approach to botanical art emphasizes the abstract qualities of these massive leaves, creating a sense of envelopment that transports viewers to a secluded tropical paradise.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-08-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=108"},
+
+{
+ "id": 109,
+ "title": "Fuchsia Dance", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "These elegant fuchsia blossoms hang like delicate dancers suspended in mid-performance. The artist skillfully contrasts the crimson sepals with the white petals, capturing both the botanical accuracy and the poetic grace of these flowers against a softly muted background that enhances their luminous quality.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-09-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=109"},
+
+{
+ "id": 110,
+ "title": "Nascent Life", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "A young red leaf emerges from the gnarled branch, symbolizing renewal and possibility. The composition juxtaposes the weathered texture of the mature branches with the vulnerable beauty of new growth, creating a visual metaphor for resilience and the cyclical nature of existence.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-10-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=110"},
+
+
+{
+ "id": 201,
+ "title": "Azure Messenger", 
+ "category": "animals", 
+ "price": 900,
+ "description": "This striking close-up portrait of a cassowary captures the regal essence of this magnificent bird. The artist's masterful technique reveals the interplay between the iridescent blues of the neck feathers and the golden-bronze crest, all set against a misty gray background that enhances the bird's otherworldly beauty. The composition's dramatic cropping creates an intimate encounter with the creature's penetrating gaze and proud posture.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/animal-01-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=201"},
+
+{
+ "id": 202,
+ "title": "Nectar Sentinel", 
+ "category": "animals", 
+ "price": 900,
+ "description": "A delicate honeyeater perches among flowering bottlebrush branches, creating a harmonious scene of nature's intricate relationships. The artist's sensitive brushwork captures both the bird's alert posture and the subtle textures of its olive-gold plumage. The dreamlike yellow background suffuses the scene with warm light, suggesting early morning or late afternoon, when these small yet vital creatures are most active in their pollination duties.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/animal-02-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=202"},
+
+{
+ "id": 203,
+ "title": "Twilight Guardian", 
+ "category": "animals", 
+ "price": 900,
+ "description": "This captivating wolf portrait reveals the soul of a wilderness icon through its piercing, intelligent eyes. The artist's meticulous attention to detail in rendering each strand of fur creates a tactile quality that contrasts with the ethereal, foggy background. Neither purely realistic nor entirely mystical, this painting exists in the liminal space between physical reality and spiritual presence, much like the wolf itself in our collective imagination.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/animal-03-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=203"},
+
+
+{
+ "id": 301,
+ "title": "Tranquil Horizons", 
+ "category": "nature", 
+ "price": 900,
+ "description": "This serene seascape captures the hypnotic rhythm of waves approaching the shore under a vast blue sky. The artist's masterful gradient of aquamarine hues creates a mesmerizing depth, while the precise rendering of water's transparency and movement invites viewers to experience the meditative quality of ocean waves. The minimalist composition emphasizes the horizontal bands of sea and sky, creating a sense of expansive calm that resonates with our collective longing for peace.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/scape-01-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=301"},
+
+{
+ "id": 302,
+ "title": "Dune Passage", 
+ "category": "nature", 
+ "price": 900,
+ "description": "A winding sandy path cuts through coastal vegetation, leading the eye toward distant dunes and an ethereal sky. The artist skillfully balances the tactile quality of the foreground path with the atmospheric perspective of the horizon, creating a composition that pulls viewers into the journey. The subtle color palette of muted greens and sandy beiges enhances the contemplative mood, suggesting both literal and metaphorical pathways through life's transitions.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/scape-02-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=302"},
+
+{
+ "id": 303,
+ "title": "Ancient Whispers", 
+ "category": "nature", 
+ "price": 900,
+ "description": "This intimate portrayal of moss-covered boulders and tropical foliage reveals nature's intricate textures and hidden beauty. The artist's meticulous attention to the varied surfaces of stone—from smooth granite to rough, lichen-covered edges—demonstrates extraordinary observational skill. Water's presence is subtly implied in the darkened crevices between rocks, suggesting the passage of time and nature's patient transformation of the landscape through countless seasons.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/scape-03-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=303"},
+
+{
+ "id": 304,
+ "title": "Outback Symphony", 
+ "category": "nature", 
+ "price": 900,
+ "description": "The iconic Australian landscape comes alive in this vibrant composition of fire-red earth, silvery-blue spinifex grass, and russet rock formations. The artist's bold use of complementary colors creates visual drama, while the rhythmic arrangement of rounded bushes across the foreground establishes a musical quality to the scene. The crystalline blue sky acts as a counterpoint to the earthy warmth below, capturing the distinctive light quality that defines the continent's interior landscapes.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/scape-04-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=304"},
+
+{
+ "id": 401,
+ "title": "Between Worlds", 
+ "category": "portraits", 
+ "price": 900,
+ "description": "This compelling portrait captures a young man's contemplative gaze against a backdrop of ethereal, cloud-like forms. The artist skillfully renders the subject's features with warm earth tones that contrast with the cool, dreamlike background, creating visual tension between reality and imagination. The subject's direct yet enigmatic expression invites viewers into a moment of suspended thought, suggesting the rich interior life behind the calm exterior. Through masterful brushwork and sensitive character observation, the painting transcends simple representation to explore identity and the thin veil between our physical presence and our wandering thoughts.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/portrait-01-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=401"}
+
+    ];
+    
+    // Format price with commas
+    function formatPrice(price) {
+      return '$' + price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+    
+    // Format category name
+    function formatCategory(category) {
+      return category.replace('-', ' ').replace(/\b\w/g, letter => letter.toUpperCase());
+    }
+    
+    // Get painting ID from URL
+    function getProductIdFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return parseInt(urlParams.get('id'));
+    }
+    
+    // Load cart from localStorage or initialize empty array
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // DOM Elements
+    const mainImage = document.getElementById('main-image');
+    const thumbnailContainer = document.getElementById('thumbnail-container');
+    const productTitle = document.getElementById('product-title');
+    const productPrice = document.getElementById('product-price');
+    const productDescription = document.getElementById('product-description');
+    const productCategoryDisplay = document.getElementById('product-category-display');
+    const productCategory = document.getElementById('product-category');
+    const categoryLink = document.getElementById('category-link');
+    const productBreadcrumbTitle = document.getElementById('product-breadcrumb-title');
+    const productMedium = document.getElementById('product-medium');
+    const productDimensions = document.getElementById('product-dimensions');
+    const productYear = document.getElementById('product-year');
+    const productAvailability = document.getElementById('product-availability');
+    const relatedGrid = document.getElementById('related-grid');
+    const cartToggle = document.getElementById('cart-toggle');
+    const cartModal = document.getElementById('cart-modal');
+    const closeModal = document.getElementById('close-modal');
+    const continueShoppingBtn = document.getElementById('continue-shopping');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotalAmount = document.getElementById('cart-total-amount');
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const quantityInput = document.getElementById('quantity-input');
+    const decrementBtn = document.getElementById('decrement-btn');
+    const incrementBtn = document.getElementById('increment-btn');
+    const addToCartBtn = document.getElementById('add-to-cart-btn');
+    const wishlistBtn = document.getElementById('wishlist-btn');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    const galleryExpand = document.getElementById('gallery-expand');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    
+    // Mobile menu toggle
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+    
+    // Load product details
+    function loadProductDetails() {
+      const productId = getProductIdFromUrl();
+      
+      // Find the product
+      const product = paintings.find(p => p.id === productId);
+      
+      if (!product) {
+        // Handle product not found
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      // Update page title
+      document.title = `${product.title} | Yvonne Druppers Gallery`;
+      
+      // Set main image
+      mainImage.src = product.image;
+      mainImage.alt = product.title;
+      
+      // Generate thumbnails
+      // For this demo, we'll use the same image but in a real scenario you'd have multiple images
+      for (let i = 0; i < 4; i++) {
+        const thumbnailSrc = i === 0 ? product.image : product.image.replace('-b.', `-b.`);
+        
+        const thumbnail = document.createElement('div');
+        thumbnail.classList.add('thumbnail');
+        if (i === 0) thumbnail.classList.add('active');
+        
+        const img = document.createElement('img');
+        img.src = thumbnailSrc;
+        img.alt = `${product.title} - View ${i+1}`;
+        
+        thumbnail.appendChild(img);
+        thumbnailContainer.appendChild(thumbnail);
+        
+        // Add click event to thumbnail
+        thumbnail.addEventListener('click', function() {
+          // Remove active class from all thumbnails
+          document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+          // Add active class to clicked thumbnail
+          this.classList.add('active');
+          // Update main image
+          mainImage.src = thumbnailSrc;
+        });
+      }
+      
+      // Set product details
+      productTitle.textContent = product.title;
+      productBreadcrumbTitle.textContent = product.title;
+      productPrice.textContent = formatPrice(product.price);
+      productDescription.textContent = product.description;
+      productCategoryDisplay.textContent = formatCategory(product.category);
+      productCategory.textContent = formatCategory(product.category);
+      categoryLink.textContent = formatCategory(product.category);
+      categoryLink.href = `collections.html?category=${product.category}`;
+      productMedium.textContent = product.medium;
+      productDimensions.textContent = product.dimensions;
+      productYear.textContent = product.year;
+      
+      // Set availability
+      if (product.availability === 'in-stock') {
+        productAvailability.textContent = 'In Stock';
+        productAvailability.className = 'availability';
+      } else if (product.availability === 'low-stock') {
+        productAvailability.textContent = 'Low Stock - Only 1 Left';
+        productAvailability.className = 'availability low';
+      } else {
+        productAvailability.textContent = 'Sold Out';
+        productAvailability.className = 'availability sold';
+        
+        // Disable add to cart button
+        addToCartBtn.disabled = true;
+        addToCartBtn.textContent = 'Sold Out';
+        addToCartBtn.style.backgroundColor = '#ccc';
+        quantityInput.disabled = true;
+        decrementBtn.disabled = true;
+        incrementBtn.disabled = true;
+      }
+      
+      // Load related products (same category but not current product)
+      const relatedProducts = paintings.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+      
+      relatedGrid.innerHTML = '';
+      
+      relatedProducts.forEach(related => {
+        const relatedCard = document.createElement('div');
+        relatedCard.classList.add('related-card');
+        
+        relatedCard.innerHTML = `
+          <div class="related-img-container">
+            <img src="${related.image}" alt="${related.title}" class="related-img">
+          </div>
+          <div class="related-content">
+            <div class="related-category">${formatCategory(related.category)}</div>
+            <h3 class="related-title">${related.title}</h3>
+            <div class="related-price">${formatPrice(related.price)}</div>
+          </div>
+        `;
+        
+        relatedGrid.appendChild(relatedCard);
+        
+        // Add click event to related product
+        relatedCard.addEventListener('click', () => {
+          window.location.href = `product-detail.html?id=${related.id}`;
+        });
+      });
+      
+      // Add to cart button event
+      addToCartBtn.addEventListener('click', () => {
+        if (product.availability === 'sold-out') return;
+        
+        const quantity = parseInt(quantityInput.value);
+        
+        // Check if already in cart
+        const existingItem = cart.find(item => item.id === product.id);
+        
+        if (existingItem) {
+          existingItem.quantity += quantity;
+        } else {
+          cart.push({
+            ...product,
+            quantity: quantity
+          });
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Update cart count
+        updateCartCount();
+        
+        // Show feedback
+        const originalText = addToCartBtn.innerHTML;
+        addToCartBtn.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+        addToCartBtn.style.backgroundColor = '#4CAF50';
+        
+        setTimeout(() => {
+          addToCartBtn.innerHTML = originalText;
+          addToCartBtn.style.backgroundColor = '';
+        }, 1500);
+        
+        // Open cart modal
+        cartModal.classList.add('show');
+        renderCart();
+      });
+      
+      // Wishlist button event
+      wishlistBtn.addEventListener('click', () => {
+        // Toggle heart icon
+        const heartIcon = wishlistBtn.querySelector('i');
+        heartIcon.classList.toggle('far');
+        heartIcon.classList.toggle('fas');
+        
+        if (heartIcon.classList.contains('fas')) {
+          wishlistBtn.style.color = '#e53935';
+          wishlistBtn.style.borderColor = '#e53935';
+        } else {
+          wishlistBtn.style.color = '';
+          wishlistBtn.style.borderColor = '';
+        }
+      });
+    }
+    
+    // Quantity controls
+    decrementBtn.addEventListener('click', () => {
+      const currentValue = parseInt(quantityInput.value);
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+      }
+    });
+    
+    incrementBtn.addEventListener('click', () => {
+      const currentValue = parseInt(quantityInput.value);
+      if (currentValue < 10) {
+        quantityInput.value = currentValue + 1;
+      }
+    });
+    
+    // Tab controls
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabBtns.forEach(b => b.classList.remove('active'));
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        // Hide all panels
+        tabPanels.forEach(panel => panel.classList.remove('active'));
+        // Show corresponding panel
+        const tabId = btn.getAttribute('data-tab');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+      });
+    });
+    
+    // Lightbox
+    galleryExpand.addEventListener('click', () => {
+      lightbox.classList.add('show');
+      lightboxImg.src = mainImage.src;
+      lightboxImg.alt = mainImage.alt;
+    });
+    
+    mainImage.addEventListener('click', () => {
+      lightbox.classList.add('show');
+      lightboxImg.src = mainImage.src;
+      lightboxImg.alt = mainImage.alt;
+    });
+    
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('show');
+    });
+    
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('show');
+      }
+    });
+    
+    // Lightbox navigation
+    let currentImageIndex = 0;
+    
+    function updateLightboxImage() {
+      const thumbnails = document.querySelectorAll('.thumbnail img');
+      if (thumbnails.length === 0) return;
+      
+      lightboxImg.src = thumbnails[currentImageIndex].src;
+      lightboxImg.alt = thumbnails[currentImageIndex].alt;
+    }
+    
+    lightboxPrev.addEventListener('click', () => {
+      const thumbnails = document.querySelectorAll('.thumbnail img');
+      if (thumbnails.length === 0) return;
+      
+      currentImageIndex--;
+      if (currentImageIndex < 0) {
+        currentImageIndex = thumbnails.length - 1;
+      }
+      
+      updateLightboxImage();
+    });
+    
+    lightboxNext.addEventListener('click', () => {
+      const thumbnails = document.querySelectorAll('.thumbnail img');
+      if (thumbnails.length === 0) return;
+      
+      currentImageIndex++;
+      if (currentImageIndex >= thumbnails.length) {
+        currentImageIndex = 0;
+      }
+      
+      updateLightboxImage();
+    });
+    
+    // Update cart count
+    function updateCartCount() {
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = count;
+    }
+    
+    // Render cart items
+    function renderCart() {
+      cartItemsContainer.innerHTML = '';
+      
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="empty-cart">
+            <div class="empty-cart-icon">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartTotalAmount.textContent = '$0.00';
+        return;
+      }
+      
+      let total = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+          <div class="cart-item-details">
+            <div class="cart-item-title">${item.title}</div>
+            <div class="cart-item-variant">${formatCategory(item.category)}</div>
+            <div class="cart-item-price">${formatPrice(item.price)}</div>
+            <div class="cart-item-controls">
+              <div class="cart-quantity-control">
+                <button class="cart-quantity-btn decrement" data-id="${item.id}">-</button>
+                <input type="number" class="cart-quantity-input" value="${item.quantity}" min="1" max="10" data-id="${item.id}">
+                <button class="cart-quantity-btn increment" data-id="${item.id}">+</button>
+              </div>
+              <button class="remove-item" data-id="${item.id}">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        
+        cartItemsContainer.appendChild(cartItem);
+      });
+      
+      cartTotalAmount.textContent = formatPrice(total);
+      
+      // Add event listeners for cart quantity controls
+      document.querySelectorAll('.cart-quantity-btn.decrement').forEach(btn => {
+        btn.addEventListener('click', decrementCartQuantity);
+      });
+      
+      document.querySelectorAll('.cart-quantity-btn.increment').forEach(btn => {
+        btn.addEventListener('click', incrementCartQuantity);
+      });
+      
+      document.querySelectorAll('.cart-quantity-input').forEach(input => {
+        input.addEventListener('change', updateCartQuantity);
+      });
+      
+      document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', removeFromCart);
+      });
+    }
+    
+    // Increment cart quantity
+    function incrementCartQuantity() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      const item = cart.find(item => item.id === paintingId);
+      
+      if (item && item.quantity < 10) {
+        item.quantity += 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+    
+    // Decrement cart quantity
+    function decrementCartQuantity() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      const item = cart.find(item => item.id === paintingId);
+      
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+    
+    // Update cart quantity directly
+    function updateCartQuantity() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      const quantity = parseInt(this.value);
+      
+      if (isNaN(quantity) || quantity < 1) return;
+      
+      const item = cart.find(item => item.id === paintingId);
+      if (item) {
+        item.quantity = Math.min(quantity, 10); // Max 10
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+    
+    // Remove from cart
+    function removeFromCart() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      cart = cart.filter(item => item.id !== paintingId);
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+    
+    // Toggle cart modal
+    cartToggle.addEventListener('click', () => {
+      cartModal.classList.add('show');
+      renderCart();
+    });
+    
+    // Close cart modal
+    closeModal.addEventListener('click', () => {
+      cartModal.classList.remove('show');
+    });
+    
+    continueShoppingBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      cartModal.classList.remove('show');
+    });
+    
+    // Close cart modal when clicking outside
+    cartModal.addEventListener('click', (e) => {
+      if (e.target === cartModal) {
+        cartModal.classList.remove('show');
+      }
+    });
+    
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProductDetails();
+      updateCartCount();
+    });
+  </script>
+</body>
+</html>

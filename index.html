@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yvonne Druppers Gallery | Contemporary Art</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #242639;
+      --primary-light: #393c56;
+      --secondary: #f8f5f0;
+      --accent: #b57d56;
+      --accent-light: #d8b297;
+      --text: #333;
+      --text-light: #777;
+      --white: #fff;
+      --spacing: 20px;
+      --border-radius: 4px;
+      --transition: all 0.3s ease;
+      --shadow: 0 5px 20px rgba(0,0,0,0.1);
+      --container-max: 1600px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background-color: var(--secondary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+    
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--spacing);
+    }
+    
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    
+    /* Header & Navigation */
+    .header {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .announcement-bar {
+      background-color: var(--primary);
+      color: var(--white);
+      text-align: center;
+      padding: 8px 0;
+      font-size: 0.85rem;
+    }
+    
+    .main-nav {
+      background-color: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+    
+    .logo-primary {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+    
+    .logo-secondary {
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-item {
+      margin-left: 40px;
+      position: relative;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      padding-bottom: 4px;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent);
+    }
+    
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .nav-icons {
+      display: flex;
+      align-items: center;
+    }
+    
+    .nav-icon {
+      margin-left: 20px;
+      color: var(--primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-icon:hover {
+      color: var(--accent);
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: var(--accent);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 85vh;
+      min-height: 600px;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .hero-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: var(--white);
+      z-index: 2;
+      width: 90%;
+      max-width: 800px;
+    }
+    
+    .hero-subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+    
+    .hero-title {
+      font-size: 5rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+    
+    .hero-description {
+      font-size: 1.2rem;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+      padding: 12px 30px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: var(--transition);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+    
+    .btn:hover {
+      background-color: var(--white);
+      color: var(--primary);
+    }
+    
+    .btn-accent {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+    
+    .btn-accent:hover {
+      background-color: transparent;
+      color: var(--accent);
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-15px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-7px) translateX(-50%);
+      }
+    }
+    
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Exhibition Section */
+    .section {
+      padding: 100px 0;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-subtitle {
+      color: var(--accent);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 5px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+    }
+    
+    .section-title {
+      font-size: 2.8rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-description {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+    
+    .exhibition-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .exhibition-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      cursor: pointer;
+      height: 0;
+      padding-bottom: 130%; /* Maintain aspect ratio */
+    }
+    
+    .exhibition-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .exhibition-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .exhibition-card:hover .exhibition-img {
+      transform: scale(1.05);
+    }
+    
+    .exhibition-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 25px;
+      transition: var(--transition);
+    }
+    
+    .exhibition-card:hover .exhibition-overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 70%);
+    }
+    
+    .exhibition-title {
+      color: var(--white);
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+      transition: var(--transition);
+    }
+    
+    .exhibition-category {
+      color: var(--accent-light);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    
+    .exhibition-price {
+      color: var(--white);
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: var(--transition);
+    }
+    
+    .exhibition-card:hover .exhibition-price {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .exhibition-actions {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      transform: translateX(10px);
+      transition: var(--transition);
+    }
+    
+    .exhibition-card:hover .exhibition-actions {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .action-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--white);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .action-btn:hover {
+      background-color: var(--accent);
+      color: var(--white);
+    }
+    
+    .view-more-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    /* Featured Artist */
+    .featured-artist {
+      background-color: var(--primary-light);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .featured-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .featured-artist-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .featured-image {
+      flex: 1;
+      position: relative;
+      height: 600px;
+    }
+    
+    .artist-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .featured-content {
+      flex: 1;
+      padding: 60px;
+    }
+    
+    .featured-subtitle {
+      color: var(--accent-light);
+    }
+    
+    .featured-title {
+      color: var(--white);
+      margin-bottom: 30px;
+    }
+    
+    .featured-text {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+    
+    .btn-outline-light {
+      border-color: rgba(255,255,255,0.5);
+    }
+    
+    /* Gallery Section */
+    .gallery {
+      background-color: var(--secondary);
+    }
+    
+    .filter-controls {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      background: none;
+      border: 1px solid brown;
+      border-radius: 20%;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-light);
+      padding: 8px 20px;
+      margin: 10px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      position: relative;
+    }
+ 
+/*   
+    .filter-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+      height: 1px;
+      background-color: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+*/
+    
+    .filter-btn:hover, .filter-btn.active {
+      color: white;  //var(--accent);
+      background-color: var(--accent);
+    }
+    
+    .filter-btn.active::after {
+      transform: scaleX(1);
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .gallery-item {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      transform: translateY(0);
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .gallery-img-container {
+      position: relative;
+      overflow: hidden;
+      height: 0;
+      padding-bottom: 75%; /* Maintain aspect ratio */
+    }
+    
+    .gallery-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-content {
+      padding: 25px;
+    }
+    
+    .gallery-category {
+      color: var(--accent);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    
+    .gallery-title {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .gallery-price {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    .gallery-desc {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .gallery-actions {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .gallery-btn {
+      padding: 8px 15px;
+      font-size: 0.85rem;
+    }
+    
+    .gallery-icon {
+      margin-right: 5px;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      background-color: var(--white);
+    }
+    
+    .testimonial-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-card {
+      background-color: var(--secondary);
+      padding: 40px;
+      border-radius: var(--border-radius);
+      text-align: center;
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      font-size: 8rem;
+      font-family: 'Playfair Display', serif;
+      color: rgba(0,0,0,0.05);
+      line-height: 1;
+    }
+    
+    .testimonial-text {
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--primary);
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+      font-family: 'Playfair Display', serif;
+      line-height: 1.6;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .author-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+    
+    .author-info {
+      text-align: left;
+    }
+    
+    .author-name {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .author-title {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    /* Newsletter */
+    .newsletter {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 80px 0;
+    }
+    
+    .newsletter-container {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .newsletter-title {
+      margin-bottom: 15px;
+    }
+    
+    .newsletter-text {
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+    
+    .newsletter-form {
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .newsletter-input {
+      width: 100%;
+      padding: 15px;
+      padding-right: 60px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+    }
+    
+    .newsletter-btn {
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      transform: translateY(-50%);
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .newsletter-btn:hover {
+      background-color: #a36d4a;
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: var(--primary-light);
+      color: rgba(255,255,255,0.8);
+      padding: 80px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-logo {
+      color: var(--white);
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .footer-about {
+      margin-bottom: 25px;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.1);
+      color: var(--white);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    
+    .footer-title {
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 30px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-link {
+      margin-bottom: 12px;
+    }
+    
+    .footer-link a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+      position: relative;
+      padding-left: 15px;
+    }
+    
+    .footer-link a::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+    
+    .footer-link a:hover {
+      color: var(--white);
+      padding-left: 20px;
+    }
+    
+    .footer-link a:hover::before {
+      left: 5px;
+    }
+    
+    .contact-info {
+      font-size: 0.95rem;
+    }
+    
+    .contact-item {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .contact-icon {
+      color: var(--accent);
+      margin-right: 15px;
+      font-size: 1.2rem;
+      margin-top: 3px;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    
+    /* Shopping Cart Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: flex-end;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+    
+    .modal-content {
+      width: 100%;
+      max-width: 500px;
+      background-color: var(--white);
+      height: 100%;
+      overflow-y: auto;
+      box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .modal.show .modal-content {
+      transform: translateX(0);
+    }
+    
+    .modal-header {
+      padding: 25px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-title {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .close-modal:hover {
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+    
+    .modal-body {
+      padding: 25px;
+      flex-grow: 1;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--text-light);
+    }
+    
+    .empty-cart-icon {
+      font-size: 3rem;
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+    
+    .cart-items {
+      margin-bottom: 30px;
+    }
+    
+    .cart-item {
+      display: flex;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius);
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    
+    .cart-item-details {
+      flex-grow: 1;
+    }
+    
+    .cart-item-title {
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    
+    .cart-item-variant {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    
+    .cart-item-price {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .quantity-btn {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .quantity-btn:hover {
+      background-color: rgba(0,0,0,0.05);
+    }
+    
+    .quantity-input {
+      width: 40px;
+      text-align: center;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      -moz-appearance: textfield;
+    }
+    
+    .quantity-input::-webkit-outer-spin-button,
+    .quantity-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    .remove-item {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .remove-item:hover {
+      color: var(--accent);
+    }
+    
+    .modal-footer {
+      margin-top: auto;
+      padding: 25px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+    
+    .checkout-btn {
+      width: 100%;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 15px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .checkout-btn:hover {
+      background-color: #a36d4a;
+    }
+    
+    .continue-shopping {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    
+    .continue-shopping:hover {
+      color: var(--accent);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 1280px) {
+      .exhibition-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .hero-title {
+        font-size: 4rem;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .exhibition-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .featured-artist-container {
+        flex-direction: column;
+      }
+      
+      .featured-image {
+        width: 100%;
+        height: 400px;
+      }
+      
+      .featured-content {
+        padding: 60px 20px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      
+      .hero-title {
+        font-size: 3.5rem;
+      }
+      
+      .section {
+        padding: 80px 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-wrapper {
+        position: relative;
+      }
+      
+      .mobile-toggle {
+        display: block;
+      }
+      
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-top: 1px solid rgba(0,0,0,0.1);
+        display: none;
+      }
+      
+      .nav-menu.show {
+        display: block;
+      }
+      
+      .nav-links {
+        flex-direction: column;
+      }
+      
+      .nav-item {
+        margin: 10px 0;
+      }
+      
+      .exhibition-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .exhibition-card {
+        padding-bottom: 100%;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      
+      .hero-description {
+        font-size: 1.1rem;
+      }
+      
+      .section-title {
+        font-size: 2.2rem;
+      }
+      
+      .modal-content {
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero {
+        height: 70vh;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .testimonial-card {
+        padding: 30px 20px;
+      }
+      
+      .testimonial-text {
+        font-size: 1.1rem;
+      }
+      
+      .section {
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="announcement-bar">
+      <div class="container">
+        <p>Current Snapshot: Dreamscapes | April 15 - June 30, 2025</p>
+      </div>
+    </div>
+    
+    <nav class="main-nav">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo">
+            <span class="logo-primary">Yvonne Druppers</span>
+            <span class="logo-secondary">Gallery</span>
+          </a>
+          
+          <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <div class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link active">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html#featured-exhibition" class="nav-link">Snapshot</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html#gallery" class="nav-link">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a href="about.html" class="nav-link">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html#footer" class="nav-link">Contact</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="nav-icons">
+            <div class="nav-icon" id="search-toggle" aria-label="Search">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-icon" id="cart-toggle" aria-label="Cart">
+              <i class="fas fa-shopping-bag"></i>
+              <span class="cart-count" id="cart-count">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <section class="hero">
+    <img src="images/hero.avif" alt="Yvonne Druppers Artwork" class="hero-image">
+    <div class="hero-content">
+      <div class="hero-subtitle">Contemporary Visual Artist</div>
+      <h1 class="hero-title">Explore Dreamlike Artistry</h1>
+      <p class="hero-description">Experience the emotional landscapes and visual poetry of Yvonne Druppers, where each painting invites you on a journey between reality and dreams.</p>
+      <a href="#gallery" class="btn">Explore the Gallery</a>
+    </div>
+    <a href="#featured-exhibition" class="scroll-indicator" aria-label="Scroll down">
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </section>
+  
+  <section class="section" id="featured-exhibition">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Current Snapshot</div>
+        <h2 class="section-title">Dreamscapes</h2>
+        <p class="section-description">Snapshots are curated selections of works on specific themes. The current snapshot, Dreamscapes, explores the boundary between dream and reality, showcasing the artist's signature dreamlike quality and emotional depth.</p>
+      </div>
+      
+      <div class="exhibition-grid">
+        <div class="exhibition-card">
+          <img src="images/soldier-01-b.jpg" alt="Xian Guardian" class="exhibition-img">
+          <div class="exhibition-overlay">
+            <div class="exhibition-category">Xian Warriors</div>
+            <h3 class="exhibition-title">Xian Commander</h3>
+            <div class="exhibition-price">$1,200</div>
+          </div>
+          <div class="exhibition-actions">
+            <div class="action-btn add-to-cart" data-id="1">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="action-btn view-details" data-id="1">
+              <i class="fas fa-eye"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="exhibition-card">
+          <img src="images/flower-03-b.jpg" alt="Blossom Cascade" class="exhibition-img">
+          <div class="exhibition-overlay">
+            <div class="exhibition-category">Flowers</div>
+            <h3 class="exhibition-title">Blossom Cascade</h3>
+            <div class="exhibition-price">$850</div>
+          </div>
+          <div class="exhibition-actions">
+            <div class="action-btn add-to-cart" data-id="103">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="action-btn view-details" data-id="103">
+              <i class="fas fa-eye"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="exhibition-card">
+          <img src="images/animal-01-b.jpg" alt="Azure Messenger" class="exhibition-img">
+          <div class="exhibition-overlay">
+            <div class="exhibition-category">Animals</div>
+            <h3 class="exhibition-title">Azure Messenger</h3>
+            <div class="exhibition-price">$1,100</div>
+          </div>
+          <div class="exhibition-actions">
+            <div class="action-btn add-to-cart" data-id="201">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+            <div class="action-btn view-details" data-id="201">
+              <i class="fas fa-eye"></i>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="view-more-container">
+        <a href="index.html#gallery" class="btn btn-accent">Go to Gallery</a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="featured-artist">
+    <div class="featured-pattern"></div>
+    <div class="container">
+      <div class="featured-artist-container">
+        <div class="featured-image">
+          <img src="images/artist-01-b.jpg" alt="Yvonne Druppers" class="artist-image">
+        </div>
+        <div class="featured-content">
+          <div class="section-subtitle featured-subtitle">The Artist</div>
+          <h2 class="section-title featured-title">Yvonne Druppers</h2>
+          <p class="featured-text">Born in Utrecht, Netherlands, and longtime resident of Far North Queensland, Australia, Yvonne creates evocative paintings that bridge the gap between perception and reality. Her work invites viewers to explore emotional landscapes as visual poetry.</p>
+          <p class="featured-text">Working primarily with oil on canvas, Yvonne creates layers of translucent color that seem to capture light from within. Her technique combines traditional methods with contemporary sensibilities, resulting in works that feel both timeless and thoroughly modern.</p>
+          <a href="about.html" class="btn btn-outline-light">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section gallery" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Featured Artworks</div>
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-description">Discover a selection of carefully curated works from Yvonne Druppers, each piece offering a unique window into the artist's aesthetic and emotional narrative.</p>
+      </div>
+      
+      <div class="filter-controls">
+        <button class="filter-btn active" data-category="all">All Works</button>
+        <button class="filter-btn" data-category="xian-warriors">Xian Warriors</button>
+        <button class="filter-btn" data-category="flowers">Floral Series</button>
+        <button class="filter-btn" data-category="animals">Animal Studies</button>
+        <button class="filter-btn" data-category="nature">Landscape Works</button>
+        <button class="filter-btn" data-category="portraits">Portrait Collection</button>
+      </div>
+      
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Gallery items will be populated by JavaScript -->
+      </div>
+    </div>
+  </section>
+  
+  <section class="section testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Testimonials</div>
+        <h2 class="section-title">What Collectors Say</h2>
+        <p class="section-description">Read what art enthusiasts and collectors have to say about Yvonne Druppers' extraordinary artwork and the impact it has made in their lives and collections.</p>
+      </div>
+      
+      <div class="testimonial-container">
+        <div class="testimonial-card">
+          <p class="testimonial-text">Yvonne's work has transformed my living space into a sanctuary of emotions. Her 'Ethereal Tiger' piece is not just a painting—it's a daily reminder of the delicate balance between power and vulnerability.</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Thompson" class="author-image">
+            <div class="author-info">
+              <div class="author-name">Sarah Thompson</div>
+              <div class="author-title">Art Collector, London</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-container">
+        <h2 class="section-title newsletter-title">Stay Connected</h2>
+        <p class="newsletter-text">Subscribe to our newsletter for exhibition announcements, exclusive previews, and behind-the-scenes insights into Yvonne's creative process.</p>
+        <form class="newsletter-form">
+          <input type="email" class="newsletter-input" placeholder="Your email address" required>
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <a href="index.html" class="footer-logo">
+            <div class="logo-primary">Yvonne Druppers</div>
+            <div class="logo-secondary">Gallery</div>
+          </a>
+          <p class="footer-about">The Yvonne Druppers Gallery features evocative paintings that bridge the gap between dreams and reality, inviting viewers to explore emotional landscapes translated through visual poetry.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Pinterest">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-nav">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="index.html">Home</a></li>
+            <li class="footer-link"><a href="index.html#featured-exhibition">Snapshot</a></li>
+            <li class="footer-link"><a href="index.html#gallery">Gallery</a></li>
+            <li class="footer-link"><a href="about.html">About</a></li>
+            <li class="footer-link"><a href="index.html#footer">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-explore">
+          <h3 class="footer-title">Explore</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="index.html#gallery" onclick="filterButtons.forEach(btn => btn.classList.remove('active')); filterButtons[1].classList.add('active'); displayGallery('xian-warriors');">Xian Warriors</a></li>
+            <li class="footer-link"><a href="index.html#gallery" onclick="filterButtons.forEach(btn => btn.classList.remove('active')); filterButtons[2].classList.add('active'); displayGallery('flowers');">Floral Series</a></li>
+            <li class="footer-link"><a href="index.html#gallery" onclick="filterButtons.forEach(btn => btn.classList.remove('active')); filterButtons[3].classList.add('active'); displayGallery('animals');">Animal Studies</a></li>
+            <li class="footer-link"><a href="index.html#gallery" onclick="filterButtons.forEach(btn => btn.classList.remove('active')); filterButtons[4].classList.add('active'); displayGallery('nature');">Landscape Works</a></li>
+            <li class="footer-link"><a href="index.html#gallery" onclick="filterButtons.forEach(btn => btn.classList.remove('active')); filterButtons[5].classList.add('active'); displayGallery('portraits');">Portrait Collection</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h3 class="footer-title">Contact</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt contact-icon"></i>
+              <div>Kuranda, Q4881<br>Far North Queensland, Australia</div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone-alt contact-icon"></i>
+              <div>+61 04 123 4567</div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope contact-icon"></i>
+              <div>forestfon@gmail.com</div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock contact-icon"></i>
+              <div>By appointment only<br>Monday-Friday, 10:00-17:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Yvonne Druppers Gallery. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <div class="modal" id="cart-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Your Cart</h2>
+        <button class="close-modal" id="close-modal" aria-label="Close cart">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="cart-items" class="cart-items">
+          <!-- Cart items will be populated by JavaScript -->
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cart-total-amount">$0.00</span>
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+        <a href="#" class="continue-shopping" id="continue-shopping">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Paintings data with dreamy descriptions
+    const paintings = [
+{
+ "id": 1,
+ "title": "The Commander", 
+ "category": "xian-warriors", 
+ "price": 1200,
+ "description": "A masterful portrayal of an ancient Chinese terracotta warrior with distinctive headdress and beard. This officer figure emerges from darkness, his weathered clay surface capturing the passage of millennia while his stoic expression conveys eternal vigilance.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/soldier-01-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=1"},
+
+{
+ "id": 2,
+ "title": "Silent Sentinel", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "This contemplative portrait reveals the subtle emotional depth behind the warrior's seemingly stoic facade. The artist's careful handling of light creates an ethereal quality, suggesting this figure exists between the physical and spiritual realms.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock", 
+ "image": "images/soldier-02-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=2"},
+
+{
+ "id": 3,
+ "title": "Warrior of the Middle Kingdom", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "With his distinctive cap and armor detailing, this terracotta soldier embodies the strength and discipline of Emperor Qin's legendary army. The textured surface treatment highlights the ancient craftsmanship while bringing a contemporary sensibility to this historical subject.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock", 
+ "image": "images/soldier-03-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=3"},
+
+{
+ "id": 4,
+ "title": "Dynasty Guardian", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "Captured in three-quarter profile, this warrior's serene expression belies his readiness for battle. The delicate rendering of facial features contrasts with the rigid military posture, creating a compelling tension between humanity and duty.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock", 
+ "image": "images/soldier-04-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=4"},
+
+{
+ "id": 5,
+ "title": "The Captain's Gaze", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "This high-ranking officer's stern countenance reflects his authority and strategic mind. The dramatic chiaroscuro technique emphasizes the sculptural quality of his features while the minimal background creates a timeless, meditative atmosphere.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/soldier-05-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=5"},
+
+{
+ "id": 6,
+ "title": "Eternal Protector", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "Distinguished by his elaborate headdress and meticulously rendered facial hair, this warrior exemplifies the artistic sophistication of ancient Chinese military sculpture. The painting's monochromatic palette enhances the subject's powerful presence and immortal essence.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/soldier-06-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=6"},
+
+{
+ "id": 7,
+ "title": "Whispers Across Time", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "This side profile captures the dignity and resolve of an ancient warrior frozen in time. The interplay of light across the sculptural planes of his face creates a dramatic atmosphere, inviting viewers to contemplate the individual behind the uniform.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock", 
+ "image": "images/soldier-07-b.jpg", 
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=7"},
+
+{
+ "id": 8,
+ "title": "Immortal Army", 
+ "category": "xian-warriors", 
+ "price": 900,
+ "description": "With a countenance suggesting quiet confidence, this terracotta soldier represents the countless warriors who stand eternal guard over their emperor. The subtle texturing of the clay surface and the atmospheric rendering transform this historical figure into a poetic meditation on memory and permanence.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/soldier-08-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=8"},
+
+{
+ "id": 101,
+ "title": "Crimson Canopy", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "A striking composition featuring vibrant red leaves against an azure sky. The artist's bold use of complementary colors creates visual drama while the upward perspective invites viewers to experience the exhilaration of gazing skyward through a tropical canopy.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-01-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=101"},
+
+{
+ "id": 102,
+ "title": "Tulip Symphony", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "These luminous coral tulips reach toward the cerulean sky in a harmonious arrangement of form and color. The artist's meticulous attention to the subtle variations in petal translucency creates a sense of movement, as though the flowers are gently swaying in a spring breeze.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-02-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=102"},
+
+{
+ "id": 103,
+ "title": "Blossom Cascade", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "Delicate coral and saffron blossoms tumble across the canvas, their vibrant hues intensified by the serene blue background. The painting captures that perfect moment when flowering trees reach peak bloom, creating a dreamlike atmosphere that balances botanical precision with emotional resonance.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-03-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=103"},
+
+{
+ "id": 104,
+ "title": "Eucalyptus Whispers", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "An intimate portrait of eucalyptus leaves and seed pods rendered in cool greens and silvery blues. The artist's masterful handling of light reveals the subtle architectural quality of these botanical elements, transforming an ordinary plant into a mesmerizing study of nature's intricate patterns.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-04-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=104"},
+
+{
+ "id": 105,
+ "title": "Water Lilies at Dawn", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "Ethereal lavender-white water lilies emerge from the mysterious depths of a pond. The artist captures both the flowers' delicate beauty and their spiritual symbolism, creating a contemplative scene that evokes the transition from darkness to light, much like the lotus rising from muddy waters toward enlightenment.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-05-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=105"},
+
+{
+ "id": 106,
+ "title": "Tropical Constellation", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "Vibrant scarlet bromeliads punctuate a sea of glossy green foliage in this lush composition. The artist's precise rendering of light on the leaves creates a sense of depth and dimension, while the rhythm of the red flowers scattered throughout suggests a celestial pattern against the verdant cosmos.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-06-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=106"},
+
+{
+ "id": 107,
+ "title": "Morning Dew", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "These tropical leaves, adorned with crystalline dewdrops, showcase the artist's extraordinary attention to detail. The interplay of pink stems against green foliage creates visual tension, while the water droplets capture ephemeral moments of morning light, transforming the ordinary into the magical.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-07-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=107"},
+
+{
+ "id": 108,
+ "title": "Aquamarine Embrace", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "Cool turquoise and deep purple foliage intertwine in this meditative composition. The artist's contemporary approach to botanical art emphasizes the abstract qualities of these massive leaves, creating a sense of envelopment that transports viewers to a secluded tropical paradise.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-08-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=108"},
+
+{
+ "id": 109,
+ "title": "Fuchsia Dance", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "These elegant fuchsia blossoms hang like delicate dancers suspended in mid-performance. The artist skillfully contrasts the crimson sepals with the white petals, capturing both the botanical accuracy and the poetic grace of these flowers against a softly muted background that enhances their luminous quality.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-09-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=109"},
+
+{
+ "id": 110,
+ "title": "Nascent Life", 
+ "category": "flowers", 
+ "price": 900,
+ "description": "A young red leaf emerges from the gnarled branch, symbolizing renewal and possibility. The composition juxtaposes the weathered texture of the mature branches with the vulnerable beauty of new growth, creating a visual metaphor for resilience and the cyclical nature of existence.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/flower-10-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=110"},
+
+
+{
+ "id": 201,
+ "title": "Azure Messenger", 
+ "category": "animals", 
+ "price": 900,
+ "description": "This striking close-up portrait of a cassowary captures the regal essence of this magnificent bird. The artist's masterful technique reveals the interplay between the iridescent blues of the neck feathers and the golden-bronze crest, all set against a misty gray background that enhances the bird's otherworldly beauty. The composition's dramatic cropping creates an intimate encounter with the creature's penetrating gaze and proud posture.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/animal-01-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=201"},
+
+{
+ "id": 202,
+ "title": "Nectar Sentinel", 
+ "category": "animals", 
+ "price": 900,
+ "description": "A delicate honeyeater perches among flowering bottlebrush branches, creating a harmonious scene of nature's intricate relationships. The artist's sensitive brushwork captures both the bird's alert posture and the subtle textures of its olive-gold plumage. The dreamlike yellow background suffuses the scene with warm light, suggesting early morning or late afternoon, when these small yet vital creatures are most active in their pollination duties.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/animal-02-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=202"},
+
+{
+ "id": 203,
+ "title": "Twilight Guardian", 
+ "category": "animals", 
+ "price": 900,
+ "description": "This captivating wolf portrait reveals the soul of a wilderness icon through its piercing, intelligent eyes. The artist's meticulous attention to detail in rendering each strand of fur creates a tactile quality that contrasts with the ethereal, foggy background. Neither purely realistic nor entirely mystical, this painting exists in the liminal space between physical reality and spiritual presence, much like the wolf itself in our collective imagination.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/animal-03-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=203"},
+
+{
+ "id": 301,
+ "title": "Tranquil Horizons", 
+ "category": "nature", 
+ "price": 900,
+ "description": "This serene seascape captures the hypnotic rhythm of waves approaching the shore under a vast blue sky. The artist's masterful gradient of aquamarine hues creates a mesmerizing depth, while the precise rendering of water's transparency and movement invites viewers to experience the meditative quality of ocean waves. The minimalist composition emphasizes the horizontal bands of sea and sky, creating a sense of expansive calm that resonates with our collective longing for peace.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/scape-01-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=301"},
+
+{
+ "id": 302,
+ "title": "Dune Passage", 
+ "category": "nature", 
+ "price": 900,
+ "description": "A winding sandy path cuts through coastal vegetation, leading the eye toward distant dunes and an ethereal sky. The artist skillfully balances the tactile quality of the foreground path with the atmospheric perspective of the horizon, creating a composition that pulls viewers into the journey. The subtle color palette of muted greens and sandy beiges enhances the contemplative mood, suggesting both literal and metaphorical pathways through life's transitions.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/scape-02-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=302"},
+
+{
+ "id": 303,
+ "title": "Ancient Whispers", 
+ "category": "nature", 
+ "price": 900,
+ "description": "This intimate portrayal of moss-covered boulders and tropical foliage reveals nature's intricate textures and hidden beauty. The artist's meticulous attention to the varied surfaces of stone—from smooth granite to rough, lichen-covered edges—demonstrates extraordinary observational skill. Water's presence is subtly implied in the darkened crevices between rocks, suggesting the passage of time and nature's patient transformation of the landscape through countless seasons.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/scape-03-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=303"},
+
+{
+ "id": 304,
+ "title": "Outback Symphony", 
+ "category": "nature", 
+ "price": 900,
+ "description": "The iconic Australian landscape comes alive in this vibrant composition of fire-red earth, silvery-blue spinifex grass, and russet rock formations. The artist's bold use of complementary colors creates visual drama, while the rhythmic arrangement of rounded bushes across the foreground establishes a musical quality to the scene. The crystalline blue sky acts as a counterpoint to the earthy warmth below, capturing the distinctive light quality that defines the continent's interior landscapes.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/scape-04-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=304"},
+
+{
+ "id": 401,
+ "title": "Between Worlds", 
+ "category": "portraits", 
+ "price": 900,
+ "description": "This compelling portrait captures a young man's contemplative gaze against a backdrop of ethereal, cloud-like forms. The artist skillfully renders the subject's features with warm earth tones that contrast with the cool, dreamlike background, creating visual tension between reality and imagination. The subject's direct yet enigmatic expression invites viewers into a moment of suspended thought, suggesting the rich interior life behind the calm exterior. Through masterful brushwork and sensitive character observation, the painting transcends simple representation to explore identity and the thin veil between our physical presence and our wandering thoughts.", 
+ "medium": "Oil on canvas", 
+ "dimensions": "90 x 120 cm",
+ "year": 2023, 
+ "availability": "in-stock",
+ "image": "images/portrait-01-b.jpg",  
+ "url": "https://yvonnadruppers.com.au/product-detail.html?id=401"}
+
+    ];
+    
+    // Format price with commas
+    function formatPrice(price) {
+      return '$' + price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+    
+    // Format category name
+    function formatCategory(category) {
+      return category.replace('-', ' ').replace(/\b\w/g, letter => letter.toUpperCase());
+    }
+    
+    // Load cart from localStorage or initialize empty array
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // DOM Elements
+    const galleryGrid = document.getElementById('gallery-grid');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cartToggle = document.getElementById('cart-toggle');
+    const cartModal = document.getElementById('cart-modal');
+    const closeModal = document.getElementById('close-modal');
+    const continueShoppingBtn = document.getElementById('continue-shopping');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotalAmount = document.getElementById('cart-total-amount');
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+function search(nameKey){
+    for (let i=0; i < paintings.length; i++) {
+        if (paintings[i].image === nameKey) {
+            return paintings[i];
+        }
+    }
+};
+    
+    // Mobile menu toggle
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+    
+    // Display gallery items
+    function displayGallery(category = 'all') {
+      galleryGrid.innerHTML = '';
+      
+      const filteredPaintings = category === 'all'
+        ? paintings
+        : paintings.filter(painting => painting.category === category);
+      
+      filteredPaintings.forEach(painting => {
+        const galleryItem = document.createElement('div');
+        galleryItem.classList.add('gallery-item');
+        galleryItem.setAttribute('data-id', painting.id);
+        
+        galleryItem.innerHTML = `
+          <div class="gallery-img-container">
+            <img src="${painting.image}" alt="${painting.title}" class="gallery-img" 
+                 onclick="const a = search(event.target.attributes.src.value); window.location.href = 'product-detail.html?id=' + a.id">
+          </div>
+          <div class="gallery-content">
+            <div class="gallery-category">${formatCategory(painting.category)}</div>
+            <h3 class="gallery-title">${painting.title}</h3>
+            <div class="gallery-price">${formatPrice(painting.price)}</div>
+            <p class="gallery-desc">${painting.description}</p>
+            <div class="gallery-actions">
+              <button class="btn btn-accent gallery-btn add-to-cart-btn" data-id="${painting.id}">
+                <i class="fas fa-shopping-bag gallery-icon"></i>Add to Cart
+              </button>
+              <button class="btn btn-accent gallery-btn view-details-btn" data-id="${painting.id}">
+                <i class="fas fa-eye gallery-icon"></i>Details
+              </button>
+            </div>
+          </div>
+        `;
+        
+        galleryGrid.appendChild(galleryItem);
+      });
+      
+      // Add event listeners to add to cart buttons
+      document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', addToCart);
+      });
+      
+      // Add event listeners to view details buttons
+      document.querySelectorAll('.view-details-btn').forEach(btn => {
+        btn.addEventListener('click', viewDetails);
+      });
+    }
+    
+    // Filter gallery by category
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Display filtered gallery
+        const category = button.getAttribute('data-category');
+        displayGallery(category);
+      });
+    });
+    
+    // Add to cart
+    function addToCart(e) {
+      const paintingId = parseInt(e.currentTarget.getAttribute('data-id'));
+      const painting = paintings.find(item => item.id === paintingId);
+      
+      // Check if already in cart
+      const existingItem = cart.find(item => item.id === paintingId);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          ...painting,
+          quantity: 1
+        });
+      }
+      
+      // Save to localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Update cart count and render cart
+      updateCartCount();
+      
+      // Show feedback
+      const btn = e.currentTarget;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check gallery-icon"></i>Added';
+      btn.style.backgroundColor = '#4CAF50';
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.backgroundColor = '';
+      }, 1500);
+    }
+    
+    // Exhibition add to cart
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const paintingId = parseInt(this.getAttribute('data-id'));
+        const painting = paintings.find(item => item.id === paintingId);
+        
+        // Check if already in cart
+        const existingItem = cart.find(item => item.id === paintingId);
+        
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            ...painting,
+            quantity: 1
+          });
+        }
+        
+        // Save to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Update cart count and render cart
+        updateCartCount();
+        
+        // Show feedback
+        this.style.backgroundColor = '#4CAF50';
+        
+        setTimeout(() => {
+          this.style.backgroundColor = '';
+        }, 1500);
+      });
+    });
+    
+    // Exhibition view details
+    document.querySelectorAll('.view-details').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const paintingId = parseInt(this.getAttribute('data-id'));
+        // Navigate to the product detail page with the painting ID
+        window.location.href = `product-detail.html?id=${paintingId}`;
+      });
+    });
+    
+    // View details
+    function viewDetails(e) {
+      const paintingId = parseInt(e.currentTarget.getAttribute('data-id'));
+      // Navigate to the product detail page with the painting ID
+      window.location.href = `product-detail.html?id=${paintingId}`;
+    }
+    
+    // Update cart count
+    function updateCartCount() {
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = count;
+    }
+    
+    // Render cart items
+    function renderCart() {
+      cartItemsContainer.innerHTML = '';
+      
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="empty-cart">
+            <div class="empty-cart-icon">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartTotalAmount.textContent = '$0.00';
+        return;
+      }
+      
+      let total = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+          <div class="cart-item-details">
+            <div class="cart-item-title">${item.title}</div>
+            <div class="cart-item-variant">${formatCategory(item.category)}</div>
+            <div class="cart-item-price">${formatPrice(item.price)}</div>
+            <div class="cart-item-controls">
+              <div class="quantity-control">
+                <button class="quantity-btn decrement" data-id="${item.id}">-</button>
+                <input type="number" class="quantity-input" value="${item.quantity}" min="1" max="10" data-id="${item.id}">
+                <button class="quantity-btn increment" data-id="${item.id}">+</button>
+              </div>
+              <button class="remove-item" data-id="${item.id}">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        
+        cartItemsContainer.appendChild(cartItem);
+      });
+      
+      cartTotalAmount.textContent = formatPrice(total);
+      
+      // Add event listeners for quantity controls
+      document.querySelectorAll('.quantity-btn.decrement').forEach(btn => {
+        btn.addEventListener('click', decrementQuantity);
+      });
+      
+      document.querySelectorAll('.quantity-btn.increment').forEach(btn => {
+        btn.addEventListener('click', incrementQuantity);
+      });
+      
+      document.querySelectorAll('.quantity-input').forEach(input => {
+        input.addEventListener('change', updateQuantity);
+      });
+      
+      document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', removeFromCart);
+      });
+    }
+    
+    // Increment quantity
+    function incrementQuantity() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      const item = cart.find(item => item.id === paintingId);
+      
+      if (item && item.quantity < 10) {
+        item.quantity += 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+    
+    // Decrement quantity
+    function decrementQuantity() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      const item = cart.find(item => item.id === paintingId);
+      
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+    
+    // Update quantity directly
+    function updateQuantity() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      const quantity = parseInt(this.value);
+      
+      if (isNaN(quantity) || quantity < 1) return;
+      
+      const item = cart.find(item => item.id === paintingId);
+      if (item) {
+        item.quantity = Math.min(quantity, 10); // Max 10
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+    
+    // Remove from cart
+    function removeFromCart() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      cart = cart.filter(item => item.id !== paintingId);
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+    
+    // Toggle cart modal
+    cartToggle.addEventListener('click', () => {
+      cartModal.classList.add('show');
+      renderCart();
+    });
+    
+    // Close cart modal
+    closeModal.addEventListener('click', () => {
+      cartModal.classList.remove('show');
+    });
+    
+    continueShoppingBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      cartModal.classList.remove('show');
+    });
+    
+    // Close cart modal when clicking outside
+    cartModal.addEventListener('click', (e) => {
+      if (e.target === cartModal) {
+        cartModal.classList.remove('show');
+      }
+    });
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      displayGallery();
+      updateCartCount();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About the Artist | Yvonne Druppers Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #242639;
+      --primary-light: #393c56;
+      --secondary: #f8f5f0;
+      --accent: #b57d56;
+      --accent-light: #d8b297;
+      --text: #333;
+      --text-light: #777;
+      --white: #fff;
+      --spacing: 20px;
+      --border-radius: 4px;
+      --transition: all 0.3s ease;
+      --shadow: 0 5px 20px rgba(0,0,0,0.1);
+      --container-max: 1600px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background-color: var(--secondary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+    
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--spacing);
+    }
+    
+    /* Header & Navigation */
+    .header {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .announcement-bar {
+      background-color: var(--primary);
+      color: var(--white);
+      text-align: center;
+      padding: 8px 0;
+      font-size: 0.85rem;
+    }
+    
+    .main-nav {
+      background-color: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+    
+    .logo-primary {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+    
+    .logo-secondary {
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-item {
+      margin-left: 40px;
+      position: relative;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      padding-bottom: 4px;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent);
+      transition: var(--transition);
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent);
+    }
+    
+    .nav-link:hover::after, .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .nav-icons {
+      display: flex;
+      align-items: center;
+    }
+    
+    .nav-icon {
+      margin-left: 20px;
+      color: var(--primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-icon:hover {
+      color: var(--accent);
+    }
+    
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: var(--accent);
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* Page Header */
+    .page-header {
+      background-color: var(--primary-light);
+      color: var(--white);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1549289524-06cf8837ace5?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      z-index: 0;
+    }
+    
+    .page-header-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    
+    .page-subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: var(--accent-light);
+    }
+    
+    .page-title {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+    
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb-item {
+      position: relative;
+    }
+    
+    .breadcrumb-item:not(:last-child)::after {
+      content: '/';
+      margin-left: 10px;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    .breadcrumb-link {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .breadcrumb-link:hover {
+      color: var(--white);
+    }
+    
+    .breadcrumb-active {
+      color: var(--accent-light);
+    }
+    
+    /* Artist Section */
+    .section {
+      padding: 100px 0;
+    }
+    
+    .section-white {
+      background-color: var(--white);
+    }
+    
+    .section-light {
+      background-color: var(--secondary);
+    }
+    
+    .section-dark {
+      background-color: var(--primary-light);
+      color: var(--white);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-subtitle {
+      color: var(--accent);
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 5px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+    }
+    
+    .section-title {
+      font-size: 2.8rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .section-dark .section-subtitle {
+      color: var(--accent-light);
+    }
+    
+    .section-dark .section-title {
+      color: var(--white);
+    }
+    
+    .section-description {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--text-light);
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+    
+    .section-dark .section-description {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .artist-intro {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+    
+    .artist-image-container {
+      flex: 1;
+      position: relative;
+    }
+    
+    .artist-image {
+      width: 100%;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .artist-image::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--accent);
+      border-radius: var(--border-radius);
+      z-index: -1;
+    }
+    
+    .artist-content {
+      flex: 1;
+    }
+    
+    .artist-name {
+      font-size: 2.5rem;
+      margin-bottom: 5px;
+      color: var(--primary);
+    }
+    
+    .artist-role {
+      font-family: 'Poppins', sans-serif;
+      color: var(--accent);
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      font-style: italic;
+    }
+    
+    .artist-bio {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    
+    .artist-quote {
+      padding: 30px;
+      background-color: var(--secondary);
+      border-left: 3px solid var(--accent);
+      margin: 40px 0;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      line-height: 1.6;
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .artist-quote::before {
+      content: '"';
+      position: absolute;
+      top: 0;
+      left: 10px;
+      font-size: 5rem;
+      color: rgba(0,0,0,0.05);
+      line-height: 1;
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-bottom: 50px;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background-color: var(--accent-light);
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding: 40px 0;
+    }
+    
+    .timeline-item:nth-child(odd) {
+      padding-right: 50%;
+    }
+    
+    .timeline-item:nth-child(even) {
+      padding-left: 50%;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      z-index: 1;
+    }
+    
+    .timeline-content {
+      position: relative;
+      padding: 30px;
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-right: 50px;
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-content::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      right: -10px;
+      width: 20px;
+      height: 20px;
+      background-color: var(--white);
+      transform: rotate(45deg);
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: 50px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: -10px;
+      width: 20px;
+      height: 20px;
+      background-color: var(--white);
+      transform: rotate(45deg);
+    }
+    
+    .timeline-year {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: var(--accent);
+      color: var(--white);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    
+    .timeline-title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    
+    .timeline-location {
+      font-style: italic;
+      color: var(--text-light);
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+    
+    .timeline-description {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+    
+    .philosophy-row {
+      display: flex;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    .philosophy-content {
+      flex: 1;
+    }
+    
+    .philosophy-text {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.8);
+      font-weight: 300;
+    }
+    
+    .philosophy-image {
+      flex: 1;
+      position: relative;
+      height: 500px;
+    }
+    
+    .philosophy-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    
+    .section-dark .stat-number {
+      color: var(--white);
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-light);
+    }
+    
+    .section-dark .stat-label {
+      color: var(--accent-light);
+    }
+    
+    .contact-content {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 12px 30px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: var(--transition);
+      cursor: pointer;
+      border-radius: var(--border-radius);
+    }
+    
+    .btn:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+    
+    .btn-accent {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+    
+    .btn-accent:hover {
+      background-color: transparent;
+      color: var(--accent);
+    }
+    
+    .btn-light {
+      background-color: transparent;
+      border-color: var(--white);
+      color: var(--white);
+    }
+    
+    .btn-light:hover {
+      background-color: var(--white);
+      color: var(--primary);
+    }
+    
+    /* Footer */
+    .footer {
+      background-color: var(--primary-light);
+      color: rgba(255,255,255,0.8);
+      padding: 80px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    
+    .footer-logo {
+      color: var(--white);
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .footer-about {
+      margin-bottom: 25px;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255,255,255,0.1);
+      color: var(--white);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    .social-link:hover {
+      background-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    
+    .footer-title {
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 30px;
+      height: 2px;
+      background-color: var(--accent);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-link {
+      margin-bottom: 12px;
+    }
+    
+    .footer-link a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+      position: relative;
+      padding-left: 15px;
+    }
+    
+    .footer-link a::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      transition: var(--transition);
+    }
+    
+    .footer-link a:hover {
+      color: var(--white);
+      padding-left: 20px;
+    }
+    
+    .footer-link a:hover::before {
+      left: 5px;
+    }
+    
+    .contact-info {
+      font-size: 0.95rem;
+    }
+    
+    .contact-item {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .contact-icon {
+      color: var(--accent);
+      margin-right: 15px;
+      font-size: 1.2rem;
+      margin-top: 3px;
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    
+    /* Shopping Cart Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: flex-end;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+    
+    .modal-content {
+      width: 100%;
+      max-width: 500px;
+      background-color: var(--white);
+      height: 100%;
+      overflow-y: auto;
+      box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .modal.show .modal-content {
+      transform: translateX(0);
+    }
+    
+    .modal-header {
+      padding: 25px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-title {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .close-modal:hover {
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+    
+    .modal-body {
+      padding: 25px;
+      flex-grow: 1;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--text-light);
+    }
+    
+    .empty-cart-icon {
+      font-size: 3rem;
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+    
+    .cart-items {
+      margin-bottom: 30px;
+    }
+    
+    .cart-item {
+      display: flex;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--border-radius);
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    
+    .cart-item-details {
+      flex-grow: 1;
+    }
+    
+    .cart-item-title {
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    
+    .cart-item-variant {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    
+    .cart-item-price {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .quantity-btn {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .quantity-btn:hover {
+      background-color: rgba(0,0,0,0.05);
+    }
+    
+    .quantity-input {
+      width: 40px;
+      text-align: center;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      -moz-appearance: textfield;
+    }
+    
+    .quantity-input::-webkit-outer-spin-button,
+    .quantity-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    .remove-item {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .remove-item:hover {
+      color: var(--accent);
+    }
+    
+    .modal-footer {
+      margin-top: auto;
+      padding: 25px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+    
+    .checkout-btn {
+      width: 100%;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 15px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .checkout-btn:hover {
+      background-color: #a36d4a;
+    }
+    
+    .continue-shopping {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    
+    .continue-shopping:hover {
+      color: var(--accent);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 1280px) {
+      .container {
+        max-width: 1200px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .container {
+        max-width: 900px;
+      }
+      
+      .page-title {
+        font-size: 3.5rem;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+      }
+      
+      .artist-intro {
+        flex-direction: column;
+        gap: 40px;
+      }
+      
+      .artist-image-container {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      
+      .philosophy-row {
+        flex-direction: column-reverse;
+        gap: 40px;
+      }
+      
+      .philosophy-image {
+        width: 100%;
+        height: 400px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        max-width: 100%;
+        padding: 0 30px;
+      }
+      
+      .nav-wrapper {
+        position: relative;
+      }
+      
+      .mobile-toggle {
+        display: block;
+      }
+      
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-top: 1px solid rgba(0,0,0,0.1);
+        display: none;
+      }
+      
+      .nav-menu.show {
+        display: block;
+      }
+      
+      .nav-links {
+        flex-direction: column;
+      }
+      
+      .nav-item {
+        margin: 10px 0;
+      }
+      
+      .page-title {
+        font-size: 3rem;
+      }
+      
+      .section {
+        padding: 80px 0;
+      }
+      
+      .timeline::before {
+        left: 40px;
+      }
+      
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        padding-right: 0;
+        padding-left: 80px;
+      }
+      
+      .timeline-dot {
+        left: 40px;
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-right: 0;
+        margin-left: 0;
+      }
+      
+      .timeline-item:nth-child(odd) .timeline-content::after {
+        display: none;
+      }
+      
+      .timeline-item:nth-child(even) .timeline-content::after {
+        top: 30px;
+        left: -10px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .modal-content {
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .container {
+        padding: 0 20px;
+      }
+      
+      .page-header {
+        padding: 60px 0;
+      }
+      
+      .page-title {
+        font-size: 2.5rem;
+      }
+      
+      .section {
+        padding: 60px 0;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .artist-quote {
+        font-size: 1.1rem;
+        padding: 20px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="announcement-bar">
+      <div class="container">
+        <p>Current Snapshot: Dreamscape Selection | April 15 - June 30, 2025</p>
+      </div>
+    </div>
+    
+    <nav class="main-nav">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo">
+            <span class="logo-primary">Yvonne Druppers</span>
+            <span class="logo-secondary">Gallery</span>
+          </a>
+          
+          <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+          </button>
+          
+          <div class="nav-menu" id="nav-menu">
+            <ul class="nav-links">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html#featured-exhibition" class="nav-link">Snapshot</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html#gallery" class="nav-link">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a href="about.html" class="nav-link active">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="index.html#footer" class="nav-link">Contact</a>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="nav-icons">
+            <div class="nav-icon" id="search-toggle" aria-label="Search">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="nav-icon" id="cart-toggle" aria-label="Cart">
+              <i class="fas fa-shopping-bag"></i>
+              <span class="cart-count" id="cart-count">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <section class="page-header">
+    <div class="container">
+      <div class="page-header-content">
+        <div class="page-subtitle">Discover the Artist</div>
+        <h1 class="page-title">About Yvonne Druppers</h1>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Home</a></li>
+          <li class="breadcrumb-item"><span class="breadcrumb-active">About</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section section-white">
+    <div class="container">
+      <div class="artist-intro">
+        <div class="artist-image-container">
+          <img src="images/artist-01-b.jpg" alt="Yvonne Druppers" class="artist-image">
+        </div>
+        <div class="artist-content">
+          <h2 class="artist-name">Yvonne Druppers</h2>
+          <p class="artist-role">Contemporary Visual Artist</p>
+          <p class="artist-bio">
+            Born in Utrecht, Netherlands, and longtime resident of Far North Queensland, Australia, Yvonne creates evocative paintings that bridge the gap between perception and reality. Her work invites viewers to explore emotional landscapes as visual poetry.
+          </p>
+          <p class="artist-bio">
+            Working primarily with oil on canvas, Yvonne creates layers of translucent color that seem to capture light from within. Her technique combines traditional methods with contemporary sensibilities, resulting in works that feel both timeless and thoroughly modern.
+          </p>
+          <p class="artist-bio">
+            Yvonne studied Fine Arts at the Royal Academy of Art in The Hague before traveling extensively throughout Asia, an experience that deeply influenced her artistic perspective. Her time in China, particularly her visits to the Terracotta Army in Xi'an, inspired her acclaimed Xian Warriors series that blends historical imagery with dreamlike elements.
+          </p>
+        </div>
+      </div>
+      
+      <blockquote class="artist-quote">
+        I don't paint what I see; I paint what I feel when I dream. My work is an invitation to journey through emotions translated into visual poetry. Each brush stroke is a word in the language of the subconscious.
+      </blockquote>
+    </div>
+  </section>
+  
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Career Highlights</div>
+        <h2 class="section-title">Artistic Journey</h2>
+        <p class="section-description">Explore the significant moments and achievements that have shaped Yvonne Druppers' artistic career and development.</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2023</div>
+            <h3 class="timeline-title">Solo Exhibition: "Dreamscapes & Memories"</h3>
+            <div class="timeline-location">Galerie Mieke van Schaijk, Amsterdam</div>
+            <p class="timeline-description">Featured 25 new works exploring the intersection of memory and imagination, receiving critical acclaim for their emotional depth and technical mastery.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2021</div>
+            <h3 class="timeline-title">Asian Contemporary Art Fair</h3>
+            <div class="timeline-location">Hong Kong</div>
+            <p class="timeline-description">Presented the complete Xian Warriors series to international acclaim, establishing Druppers' reputation as a bridge between Eastern and Western artistic traditions.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2019</div>
+            <h3 class="timeline-title">Van Gogh Foundation Grant for Emerging Artists</h3>
+            <div class="timeline-location">Netherlands</div>
+            <p class="timeline-description">Awarded for innovative techniques and emotional depth in contemporary portraiture, providing financial support for a year of dedicated studio work.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2017</div>
+            <h3 class="timeline-title">Group Exhibition: "New Perspectives"</h3>
+            <div class="timeline-location">Stedelijk Museum, Amsterdam</div>
+            <p class="timeline-description">Featured alongside five other emerging Dutch artists exploring new directions in contemporary art, marking Druppers' first major museum exhibition.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2011</div>
+            <h3 class="timeline-title">Artist Residency</h3>
+            <div class="timeline-location">Xi'an Academy of Fine Arts, China</div>
+            <p class="timeline-description">Six-month residency that profoundly influenced Druppers' artistic direction, leading to the development of her signature Xian Warriors series.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2007</div>
+            <h3 class="timeline-title">MFA in Fine Arts</h3>
+            <div class="timeline-location">Royal Academy of Art, The Hague</div>
+            <p class="timeline-description">Graduated with honors, presenting a thesis on the intersection of reality and dreamscapes in contemporary painting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-subtitle">Creative Vision</div>
+        <h2 class="section-title">Artistic Philosophy</h2>
+        <p class="section-description">Understanding the guiding principles and inspirations behind Yvonne Druppers' distinctive artistic approach.</p>
+      </div>
+      
+      <div class="philosophy-row">
+        <div class="philosophy-content">
+          <p class="philosophy-text">
+            Druppers' work explores the liminal spaces between consciousness and the subconscious. She believes that art serves as a bridge between our waking reality and the rich world of dreams and emotions that lies beneath. Her paintings often feature subjects that appear to exist in multiple states simultaneously – solid yet ethereal, present yet fading.
+          </p>
+          <p class="philosophy-text">
+            Color plays a crucial role in her artistic language, with each hue carefully selected to evoke specific emotional responses. Druppers often works intuitively, allowing the painting to evolve organically rather than adhering strictly to preliminary sketches. This process-oriented approach results in works that capture the fluidity of emotional states and the ever-changing nature of our inner landscapes.
+          </p>
+          <p class="philosophy-text">
+            "My paintings are not meant to be merely viewed, but experienced," says Druppers. "I create environments rather than images – spaces where viewers can project their own emotional narratives and find personal meaning. Each layer of paint represents a layer of consciousness, inviting deeper exploration with each viewing."
+          </p>
+          <a href="#" class="btn btn-light">View Artist Statement</a>
+        </div>
+        <div class="philosophy-image">
+          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Yvonne Druppers in her studio" class="philosophy-img">
+        </div>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-palette"></i>
+          </div>
+          <div class="stat-number">120+</div>
+          <div class="stat-label">Artworks Created</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-globe-europe"></i>
+          </div>
+          <div class="stat-number">15</div>
+          <div class="stat-label">Countries Exhibited</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <div class="stat-number">8</div>
+          <div class="stat-label">Awards Received</div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-university"></i>
+          </div>
+          <div class="stat-number">12</div>
+          <div class="stat-label">Museum Collections</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section section-white">
+    <div class="container">
+      <div class="contact-content">
+        <div class="section-subtitle">Connect</div>
+        <h2 class="section-title">Experience the Gallery</h2>
+        <p class="section-description">Discover the emotional landscapes and visual poetry of Yvonne Druppers' work through our exhibitions and collections. Arrange a studio visit or commission a custom piece.</p>
+        
+        <div class="cta-buttons">
+          <a href="exhibitions.html" class="btn">View Exhibitions</a>
+          <a href="contact.html" class="btn btn-accent">Contact the Gallery</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <a href="index.html" class="footer-logo">
+            <div class="logo-primary">Yvonne Druppers</div>
+            <div class="logo-secondary">Gallery</div>
+          </a>
+          <p class="footer-about">The Yvonne Druppers Gallery features evocative paintings that bridge the gap between dreams and reality, inviting viewers to explore emotional landscapes translated through visual poetry.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Pinterest">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-nav">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="index.html">Home</a></li>
+            <li class="footer-link"><a href="exhibitions.html">Exhibitions</a></li>
+            <li class="footer-link"><a href="collections.html">Collections</a></li>
+            <li class="footer-link"><a href="about.html">About</a></li>
+            <li class="footer-link"><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-explore">
+          <h3 class="footer-title">Explore</h3>
+          <ul class="footer-links">
+            <li class="footer-link"><a href="#">Xian Warriors</a></li>
+            <li class="footer-link"><a href="#">Floral Series</a></li>
+            <li class="footer-link"><a href="#">Animal Studies</a></li>
+            <li class="footer-link"><a href="#">Landscape Works</a></li>
+            <li class="footer-link"><a href="#">Portrait Collection</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h3 class="footer-title">Contact</h3>
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt contact-icon"></i>
+              <div>Amstel 123, 1011 PW<br>Amsterdam, Netherlands</div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone-alt contact-icon"></i>
+              <div>+31 20 123 4567</div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope contact-icon"></i>
+              <div>contact@yvonnedruppers.com</div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock contact-icon"></i>
+              <div>By appointment only<br>Monday-Friday, 10:00-17:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Yvonne Druppers Gallery. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <div class="modal" id="cart-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Your Cart</h2>
+        <button class="close-modal" id="close-modal" aria-label="Close cart">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div id="cart-items" class="cart-items">
+          <!-- Cart items will be populated by JavaScript -->
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cart-total-amount">$0.00</span>
+        </div>
+        <button class="checkout-btn">Proceed to Checkout</button>
+        <a href="#" class="continue-shopping" id="continue-shopping">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Load cart from localStorage or initialize empty array
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Format price with commas
+    function formatPrice(price) {
+      return '$' + price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+    
+    // Format category name
+    function formatCategory(category) {
+      return category.replace('-', ' ').replace(/\b\w/g, letter => letter.toUpperCase());
+    }
+    
+    // DOM Elements
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const cartToggle = document.getElementById('cart-toggle');
+    const cartModal = document.getElementById('cart-modal');
+    const closeModal = document.getElementById('close-modal');
+    const continueShoppingBtn = document.getElementById('continue-shopping');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartCount = document.getElementById('cart-count');
+    const cartTotalAmount = document.getElementById('cart-total-amount');
+    
+    // Mobile menu toggle
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+    
+    // Update cart count
+    function updateCartCount() {
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = count;
+    }
+    
+    // Render cart items
+    function renderCart() {
+      cartItemsContainer.innerHTML = '';
+      
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="empty-cart">
+            <div class="empty-cart-icon">
+              <i class="fas fa-shopping-bag"></i>
+            </div>
+            <p>Your cart is empty</p>
+          </div>
+        `;
+        cartTotalAmount.textContent = '$0.00';
+        return;
+      }
+      
+      let total = 0;
+      
+      cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+          <div class="cart-item-details">
+            <div class="cart-item-title">${item.title}</div>
+            <div class="cart-item-variant">${formatCategory(item.category)}</div>
+            <div class="cart-item-price">${formatPrice(item.price)}</div>
+            <div class="cart-item-controls">
+              <div class="quantity-control">
+                <button class="quantity-btn decrement" data-id="${item.id}">-</button>
+                <input type="number" class="quantity-input" value="${item.quantity}" min="1" max="10" data-id="${item.id}">
+                <button class="quantity-btn increment" data-id="${item.id}">+</button>
+              </div>
+              <button class="remove-item" data-id="${item.id}">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        
+        cartItemsContainer.appendChild(cartItem);
+      });
+      
+      cartTotalAmount.textContent = formatPrice(total);
+      
+      // Add event listeners for quantity controls
+      document.querySelectorAll('.quantity-btn.decrement').forEach(btn => {
+        btn.addEventListener('click', decrementQuantity);
+      });
+      
+      document.querySelectorAll('.quantity-btn.increment').forEach(btn => {
+        btn.addEventListener('click', incrementQuantity);
+      });
+      
+      document.querySelectorAll('.quantity-input').forEach(input => {
+        input.addEventListener('change', updateQuantity);
+      });
+      
+      document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', removeFromCart);
+      });
+    }
+    
+    // Increment quantity
+    function incrementQuantity() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      const item = cart.find(item => item.id === paintingId);
+      
+      if (item && item.quantity < 10) {
+        item.quantity += 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+    
+    // Decrement quantity
+    function decrementQuantity() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      const item = cart.find(item => item.id === paintingId);
+      
+      if (item && item.quantity > 1) {
+        item.quantity -= 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+    
+    // Update quantity directly
+    function updateQuantity() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      const quantity = parseInt(this.value);
+      
+      if (isNaN(quantity) || quantity < 1) return;
+      
+      const item = cart.find(item => item.id === paintingId);
+      if (item) {
+        item.quantity = Math.min(quantity, 10); // Max 10
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+      }
+    }
+    
+    // Remove from cart
+    function removeFromCart() {
+      const paintingId = parseInt(this.getAttribute('data-id'));
+      cart = cart.filter(item => item.id !== paintingId);
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+    
+    // Toggle cart modal
+    cartToggle.addEventListener('click', () => {
+      cartModal.classList.add('show');
+      renderCart();
+    });
+    
+    // Close cart modal
+    closeModal.addEventListener('click', () => {
+      cartModal.classList.remove('show');
+    });
+    
+    continueShoppingBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      cartModal.classList.remove('show');
+    });
+    
+    // Close cart modal when clicking outside
+    cartModal.addEventListener('click', (e) => {
+      if (e.target === cartModal) {
+        cartModal.classList.remove('show');
+      }
+    });
+    
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
+    });
+  </script>
+</body>
+</html>
